@@ -30,7 +30,7 @@ angular.module('testTinymceApp')
                             myDiv.hide();
                             console.log('content', content);
                             scope.fromone = scope.contenutoEditor;
-                            var newHtml = '<p ng-bind="fromone"></p>';
+                            var newHtml = '<div class=\"editorEl\" id=\"elemento' + _data.id + '\" ui-tinymce=\"{{optsEditor}}\" ng-model=\"fromone\" ></div>';
                             var el = angular.element(newHtml);
                             var l = $compile(el);
                             element.append(el);
@@ -43,7 +43,8 @@ angular.module('testTinymceApp')
                             console.log('.mce-tinymce.length', element.find('.mce-tinymce').length);
                             var contenuto = tinymce.get('elemento' + _data.id).getContent();
                             console.log('contenuto chiusura: ', contenuto);
-                            console.log('contenuto chiusura x: ', scope.x);
+                            scope.contenutoEditor = contenuto;
+                            scope.$apply();
                         }
                         enable = !enable;
                     };
