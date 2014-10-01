@@ -12,9 +12,6 @@ angular.module('testTinymceApp')
             return {
                 template: '<div style="width:200px; height: 20px; background-color: red"><span ng-bind="contenutoEditor"></span></div>',
                 restrict: 'E',
-                scope: {
-					fromone: '='
-                },
                 link: function postLink(scope, element, attrs, ngModel) {
                     var enable = true;
                     var _data = {
@@ -27,15 +24,12 @@ angular.module('testTinymceApp')
                     };
                     scope.contenutoEditor = 'Initial';
                     var ondblclick = function() {
-                        console.log('dblclick');
-
                         if (enable) {
                             var myDiv = element.find('div');
                             var content = myDiv.html();
-                            // myDiv.hide();
+                            myDiv.hide();
                             console.log('content', content);
-                            scope.fromone = 'OLEEEEEEEEEEEEE';
-                            console.log('scope.fromone', scope.fromone);
+                            scope.fromone = scope.contenutoEditor;
                             var newHtml = '<p ng-bind="fromone"></p>';
                             var el = angular.element(newHtml);
                             var l = $compile(el);
